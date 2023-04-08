@@ -30,14 +30,13 @@
             $counter = 0;
 
             for ($i=0; $i < count($alternatives); $i++) { 
+
+                $image_random_dog = get_image_randomly();
+                $random_dog_not_done = basename($dir_path . $image_random_dog, ".jpg");
+                $random_dog_done = RemoveSpecialChar($random_dog_not_done);
+
                 for ($j=0; $j < 4; $j++) { 
-                    $image_random_dog = get_image_randomly();
-                    $random_dog_not_done = basename($dir_path . $image_random_dog, ".jpg");
-                    $random_dog_done = RemoveSpecialChar($random_dog_not_done);
-    
-                    if($random_dog_done !== $alternatives[$i]){
-                        $alternatives[] = $random_dog_done;
-                    }
+                    
                 }
             }
             return $alternatives;
