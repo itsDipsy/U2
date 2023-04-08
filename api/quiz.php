@@ -24,22 +24,30 @@
         function make_alternatives() { // Denna gör så att alla alternativen blir random skapade och det inte finns två eller flera av samma (algoritmen är inte klar än)
 
             $dir_path = "../images/";
-            $running = true;
             $alternatives = [];
-            $ones_before = [];
-            $counter = 0;
-
-            for ($i=0; $i < count($alternatives); $i++) { 
-
+            $count = 0;
+            while($count < 4){
                 $image_random_dog = get_image_randomly();
                 $random_dog_not_done = basename($dir_path . $image_random_dog, ".jpg");
                 $random_dog_done = RemoveSpecialChar($random_dog_not_done);
-
-                for ($j=0; $j < 4; $j++) { 
-                    
+                
+                if(count($alternatives) >= 1){
+                    foreach($alternatives as $alternativ){
+                        if($random_dog_done !== $alternativ){
+                            $alternatives[] = $random_dog_done;
+                            $count++;
+                        }
+                    }
+                      
+                } 
+                else{
+                    $alternatives[] = $random_dog_done;
+                    $count++;
                 }
+
             }
             return $alternatives;
+
         }
 
         function make_return_alternatives($alternatives){ // gör så att alla alternativen skickas i rätt format
