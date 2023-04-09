@@ -4,9 +4,9 @@
 
         $user_filename = "../database/user_database.json";
         $highscore_filename = "../database/higest_user_score_database.json";
-        //fix so that we can check that the file exists later, now we just guess that it does
+        $user_php_format = json_decode(file_get_contents($file), true); 
+
         $value_from_post_request = json_decode(file_get_contents("php://input"), true);
-        $user_php_format = json_decode(file_get_contents($user_filename), true);
 
         for ($i=0; $i < count($user_php_format); $i++) {
             if($user_php_format[$i]["username"] === $value_from_post_request["username"] ) {
@@ -25,7 +25,8 @@
         $user_filename = "../database/user_database.json";
         $highscore_filename = "../database/higest_user_score_database.json";
 
-        $user_php_format = json_decode(file_get_contents($user_filename), true);
+        $user_php_format = json_decode(file_get_contents($file), true); 
+
         $data_for_highscore = [];
 
         function comparison_callback($user1, $user2){

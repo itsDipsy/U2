@@ -9,7 +9,14 @@
         function get_image_randomly(){ // hämtar en random hund
             $dir_path = "../images/";
             $files = scandir($dir_path);
-            
+            if($files === false){ // blir false om något går fel därför har jag en if-sats för att see att de går bra
+                header("Content-Type: application/json");
+                http_response_code(500);
+                echo json_encode([
+                    "message" => "Data is lost (internal server error)"
+                ]);
+                exit();
+            }
             $count = count($files);
             $index = rand(2, ($count - 1)); // annars kan det bli .. det måste vara rand(2, ...) 
             $image = $files[$index];
@@ -86,8 +93,7 @@
        
         exit();
     }
-    else{
-
+    else {
         header("Content-Type: application/json");
         http_response_code(400);
         echo json_encode([
