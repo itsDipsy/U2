@@ -4,7 +4,7 @@
 
         $user_filename = "../database/user_database.json";
         $highscore_filename = "../database/higest_user_score_database.json";
-        $user_php_format = json_decode(file_get_contents($file), true); 
+        $user_php_format = json_decode(file_get_contents($user_filename), true); 
 
         $value_from_post_request = json_decode(file_get_contents("php://input"), true);
 
@@ -25,7 +25,7 @@
         $user_filename = "../database/user_database.json";
         $highscore_filename = "../database/higest_user_score_database.json";
 
-        $user_php_format = json_decode(file_get_contents($file), true); 
+        $user_php_format = json_decode(file_get_contents($user_filename), true); 
 
         $data_for_highscore = [];
 
