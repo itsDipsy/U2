@@ -4,7 +4,6 @@
 
         $user_filename = "../database/user_database.json";
         $highscore_filename = "../database/higest_user_score_database.json";
-        if(file_exists())
         //fix so that we can check that the file exists later, now we just guess that it does
         $value_from_post_request = json_decode(file_get_contents("php://input"), true);
         $user_php_format = json_decode(file_get_contents($user_filename), true);

@@ -2,36 +2,31 @@
     {
         "username": "ee",
         "password": "ee",
-        "points": 12
+        "points": 8
     },
     {
-        "username": "ww",
-        "password": "ww",
-        "points": 3
+        "username": "ew",
+        "password": "ew",
+        "points": 4
     },
     {
         "username": "aa",
         "password": "aa",
-        "points": 5
-    },
-    {
-        "username": "aq",
-        "password": "aq",
         "points": 4
     },
     {
-        "username": "we",
-        "password": "we",
+        "username": "f",
+        "password": "f",
         "points": 0
     },
     {
-        "username": "wweewq",
-        "password": "ewqewqeqw",
+        "username": "q",
+        "password": "q",
         "points": 0
     },
     {
-        "username": "fsdfdsfsd",
-        "password": "fds",
-        "points": 0
+        "username": "d",
+        "password": "f",
+        "points": 7
     }
 ]

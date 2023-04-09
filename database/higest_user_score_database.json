@@ -1,18 +1,18 @@
 [
     {
         "username": "ee",
-        "points": 10
+        "points": 8
+    },
+    {
+        "username": "d",
+        "points": 7
     },
     {
         "username": "aa",
-        "points": 5
-    },
-    {
-        "username": "aq",
         "points": 4
     },
     {
-        "username": "ww",
-        "points": 3
+        "username": "ew",
+        "points": 4
     }
 ]
