@@ -4,19 +4,28 @@
 
         $user_filename = "../database/user_database.json";
         $highscore_filename = "../database/higest_user_score_database.json";
-        $user_php_format = json_decode(file_get_contents($user_filename), true); 
+        if(file_exists($user_filename)){
+            $user_php_format = json_decode(file_get_contents($user_filename), true); 
 
-        $value_from_post_request = json_decode(file_get_contents("php://input"), true);
-
-        for ($i=0; $i < count($user_php_format); $i++) {
-            if($user_php_format[$i]["username"] === $value_from_post_request["username"] ) {
-                $user_php_format[$i]["points"] = $user_php_format[$i]["points"] + $value_from_post_request["points"];
-                file_put_contents($user_filename, json_encode($user_php_format, JSON_PRETTY_PRINT));
-                header("Content-Type: application/json");
-                echo json_encode($user_php_format[$i]);
-                exit();
-            }
-        }   
+            $value_from_post_request = json_decode(file_get_contents("php://input"), true);
+           
+            for ($i=0; $i < count($user_php_format); $i++) {
+                if($user_php_format[$i]["username"] === $value_from_post_request["username"] ) {
+                    $user_php_format[$i]["points"] = $user_php_format[$i]["points"] + $value_from_post_request["points"];
+                    file_put_contents($user_filename, json_encode($user_php_format, JSON_PRETTY_PRINT));
+                    header("Content-Type: application/json");
+                    echo json_encode($user_php_format[$i]);
+                    exit();
+                }
+            }   
+        }
+        else{
+            header("Content-Type: application/json");
+            http_response_code(500);
+            echo json_encode(["message" => "Internal Server Error"]);
+            exit();
+        }
+        
 
     }
 
@@ -24,8 +33,15 @@
 
         $user_filename = "../database/user_database.json";
         $highscore_filename = "../database/higest_user_score_database.json";
-
-        $user_php_format = json_decode(file_get_contents($user_filename), true); 
+        if(file_exists($user_filename)){
+            $user_php_format = json_decode(file_get_contents($user_filename), true); 
+        }
+        else{
+            header("Content-Type: application/json");
+            http_response_code(500);
+            echo json_encode(["message" => "Internal Server Error"]);
+            exit();
+        }
 
         $data_for_highscore = [];
 
