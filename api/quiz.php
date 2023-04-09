@@ -26,28 +26,18 @@
             $dir_path = "../images/";
             $alternatives = [];
             $count = 0;
-            while($count < 4){
+            while($count < 4) {
                 $image_random_dog = get_image_randomly();
                 $random_dog_not_done = basename($dir_path . $image_random_dog, ".jpg");
                 $random_dog_done = RemoveSpecialChar($random_dog_not_done);
                 
-                if(count($alternatives) >= 1){
-                    foreach($alternatives as $alternativ){
-                        if($random_dog_done !== $alternativ){
-                            $alternatives[] = $random_dog_done;
-                            $count++;
-                        }
-                    }
-                      
-                } 
-                else{
+                if(in_array($random_dog_done, $alternatives, true) !== true){
                     $alternatives[] = $random_dog_done;
                     $count++;
                 }
-
+                
             }
             return $alternatives;
-
         }
 
         function make_return_alternatives($alternatives){ // gör så att alla alternativen skickas i rätt format
