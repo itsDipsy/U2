@@ -1,7 +1,22 @@
 <?php
     if($_SERVER["REQUEST_METHOD"] === "POST"){ // Kollar att det är en POST request
+        
         $value_from_post_request = json_decode(file_get_contents("php://input"), true);
         
+        if($value_from_post_request["username"] === "" && $value_from_post_request["password"] === ""){
+            header("Content-Type: application/json");
+            http_response_code(400);
+            echo json_encode(["message" => "Invalid credentials, need username and password"]);
+            exit();
+        }
+        
+        if($value_from_post_request["username"] === "" || $value_from_post_request["password"] === ""){
+            header("Content-Type: application/json");
+            http_response_code(400);
+            echo json_encode(["message" => "Invalid credentials, need username or password"]);
+            exit();
+        }
+
         $new_data = [];
         $filename = "../database/user_database.json";
         if(file_exists($filename) === true){ // Kollar att filen finns
