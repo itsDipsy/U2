@@ -2,11 +2,31 @@
     {
         "username": "ee",
         "password": "ee",
-        "points": 2
+        "points": 15
     },
     {
         "username": "ew",
         "password": "ew",
+        "points": 5
+    },
+    {
+        "username": "aa",
+        "password": "aa",
+        "points": 4
+    },
+    {
+        "username": "eq",
+        "password": "eq",
+        "points": 2
+    },
+    {
+        "username": "lowest",
+        "password": "lowest",
         "points": 0
+    },
+    {
+        "username": "ds",
+        "password": "ds",
+        "points": 4
     }
 ]
