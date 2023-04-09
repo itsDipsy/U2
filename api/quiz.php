@@ -86,4 +86,12 @@
        
         exit();
     }
+    else{
+
+        header("Content-Type: application/json");
+        http_response_code(400);
+        echo json_encode([
+            "message" => "Wrong HTTP request method, only execept GET (quiz.php)"
+        ]);
+    }
 ?>    

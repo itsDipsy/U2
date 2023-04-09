@@ -1,2 +1,2 @@
 1. I have too make sure that when a user tries to register a empty password or username that an error message gets sent.
-2. See till att man inte kan få två alternativ eller flera av samma generellt.
+2. See till att man inte kan få två alternativ eller flera av samma generellt. Klar

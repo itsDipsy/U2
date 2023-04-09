@@ -1,5 +1,5 @@
 <?php
-     if($_SERVER["REQUEST_METHOD"] === "POST"){
+    if($_SERVER["REQUEST_METHOD"] === "POST"){
         $value_from_post_request = json_decode(file_get_contents("php://input"), true);
         
         $filename = "../database/user_database.json";
@@ -18,6 +18,8 @@
                     exit(); // exit because we found the user
                 }
             }
+
+            // Detta blir felet om det inte finns en användare
             header("Content-Type: application/json");
             http_response_code(400); // if we could not find the user
             echo json_encode(["message" => "There are no users by those credentials"]);
@@ -28,8 +30,12 @@
             http_response_code(400); 
             echo json_encode(["message" => "There are no users"]);
             exit();
-        }
-        
-        
+        }   
+    }
+    else{
+        header("Content-Type: application/json");
+        echo json_encode([
+            "message" => "Wrong HTTP request method, only execept POST (login.php)"
+        ]);
     }
 ?>

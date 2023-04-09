@@ -4,11 +4,11 @@
 
         $user_filename = "../database/user_database.json";
         $highscore_filename = "../database/higest_user_score_database.json";
-        
+        if(file_exists())
         //fix so that we can check that the file exists later, now we just guess that it does
         $value_from_post_request = json_decode(file_get_contents("php://input"), true);
-        
         $user_php_format = json_decode(file_get_contents($user_filename), true);
+
         for ($i=0; $i < count($user_php_format); $i++) {
             if($user_php_format[$i]["username"] === $value_from_post_request["username"] ) {
                 $user_php_format[$i]["points"] = $user_php_format[$i]["points"] + $value_from_post_request["points"];
@@ -21,7 +21,7 @@
 
     }
 
-    if($_SERVER["REQUEST_METHOD"] === "GET"){
+    elseif($_SERVER["REQUEST_METHOD"] === "GET"){
 
         $user_filename = "../database/user_database.json";
         $highscore_filename = "../database/higest_user_score_database.json";
@@ -61,5 +61,11 @@
         file_put_contents($highscore_filename, json_encode($data_for_highscore, JSON_PRETTY_PRINT));
         header("Content-Type: application/json");
         echo json_encode($data_for_highscore);
+    }
+    else{
+        header("Content-Type: application/json");
+        echo json_encode([
+            "message" => "Wrong HTTP request method, only execept GET and POST (points.php)"
+        ]);
     }
 ?>

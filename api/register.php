@@ -1,10 +1,11 @@
 <?php
-    if($_SERVER["REQUEST_METHOD"] === "POST"){
+    if($_SERVER["REQUEST_METHOD"] === "POST"){ // Kollar att det är en POST request
         $value_from_post_request = json_decode(file_get_contents("php://input"), true);
         
         $new_data = [];
         $filename = "../database/user_database.json";
-        if(file_exists($filename) === true){
+        if(file_exists($filename) === true){ // Kollar att filen finns
+
             $old_data_in_file = file_get_contents($filename);
             $new_data = json_decode($old_data_in_file, true);
             
@@ -48,7 +49,7 @@
             }
             
         }
-        else{
+        else{ // Om inte filen finns så skapas det än med objektet som innehåller data from POST requestet
 
             $new_user_data = [
                 "username" => $value_from_post_request["username"],
@@ -63,6 +64,11 @@
             echo json_encode($new_user_data);
         }
         
+    }
+    else{ // Detta blir om det inte är en POST request
+        header("Content-Type: application/json");
+        http_response_code(400);
+        echo json_encode(["message" => "Wrong HTTP request, only except POST (in register.php)"]);
     }
 
 ?>
