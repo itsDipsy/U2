@@ -1,7 +1,5 @@
 
 <?php
-
-
     if($_SERVER["REQUEST_METHOD"] === "GET"){
         
         $alternatives = [];
@@ -38,7 +36,7 @@
                 $random_dog_not_done = basename($dir_path . $image_random_dog, ".jpg");
                 $random_dog_done = RemoveSpecialChar($random_dog_not_done);
                 
-                if(in_array($random_dog_done, $alternatives, true) !== true){
+                if(in_array($random_dog_done, $alternatives, true) !== true){ // in_array() kollar att just den hunden inte är med i arrayen så att det inte blir fler av samma
                     $alternatives[] = $random_dog_done;
                     $count++;
                 }

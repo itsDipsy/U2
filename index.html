@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <title>U2 Elliot</title>
+    <title>U2</title>
     <style>
         body {
             font-family: Georgia;
@@ -56,7 +57,8 @@
             border-radius: 4px;
         }
 
-        button#register, button#login {
+        button#register,
+        button#login {
             background: transparent;
             border: 0;
             cursor: pointer;
@@ -69,7 +71,8 @@
             display: block;
         }
 
-        button#register:hover, button#login:hover {
+        button#register:hover,
+        button#login:hover {
             text-decoration: underline;
         }
 
@@ -78,7 +81,8 @@
             margin: 0 auto;
         }
 
-        form input, form button {
+        form input,
+        form button {
             display: block;
             width: 100%;
             box-sizing: border-box;
@@ -210,6 +214,7 @@
         }
     </style>
 </head>
+
 <body>
     <nav>
         <h1>Dog Breed Quiz</h1>
@@ -251,15 +256,15 @@
             registerButton.addEventListener("click", renderRegisterPage);
 
             let loginForm = main.querySelector("form");
-            loginForm.addEventListener("submit", async function(event) {
+            loginForm.addEventListener("submit", async function (event) {
                 event.preventDefault();
                 let message = main.querySelector("#message");
 
                 try {
                     // Login Endpoint
                     let response = await fetch("api/login.php", {
-                        method: "POST", // varför post och inte get -- Elliots fråga, En ide är att det är samma som en get i backenden men det är en POST för att det ska fungera för register också
-                        headers: {"Content-Type": "application/json"},
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
                             username: this.elements.username.value,
                             password: this.elements.password.value,
@@ -294,7 +299,7 @@
                 // Login Endpoint
                 let response = await fetch("api/login.php", {
                     method: "POST",
-                    headers: {"Content-Type": "application/json"},
+                    headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
                         username: user.username,
                         password: user.password,
@@ -302,6 +307,7 @@
                 });
 
                 let data = await response.json();
+
                 // If we didn't manage to login we'll redirect the user to our
                 // login page
                 if (!response.ok) {
@@ -338,7 +344,7 @@
             loginButton.addEventListener("click", renderLoginPage);
 
             let registerForm = main.querySelector("form");
-            registerForm.addEventListener("submit", async function(event) {
+            registerForm.addEventListener("submit", async function (event) {
                 event.preventDefault();
                 let message = main.querySelector("#message");
 
@@ -346,7 +352,7 @@
                     // Register Endpoint
                     let response = await fetch("api/register.php", {
                         method: "POST",
-                        headers: {"Content-Type": "application/json"},
+                        headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
                             // NOTE: this just extracts the values from our
                             // <input>'s (based on their id)
@@ -453,7 +459,7 @@
             try {
                 let response = await fetch("api/points.php", {
                     method: "POST",
-                    headers: {"Content-Type": "application/json"},
+                    headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
                         // NOTE: these two values are stored within the global
                         // variable `user`
@@ -538,4 +544,5 @@
         }
     </script>
 </body>
+
 </html>

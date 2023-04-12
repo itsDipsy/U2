@@ -1,19 +1,18 @@
 <?php
+
+    require_once("./functions.php");
+
     if($_SERVER["REQUEST_METHOD"] === "POST"){ // Kollar att det är en POST request
         
         $value_from_post_request = json_decode(file_get_contents("php://input"), true);
         
         if($value_from_post_request["username"] === "" && $value_from_post_request["password"] === ""){
-            header("Content-Type: application/json");
-            http_response_code(400);
-            echo json_encode(["message" => "Invalid credentials, need username and password"]);
+            sendResponse(400, ["message" => "Invalid credentials, need username or password"]);
             exit();
         }
         
         if($value_from_post_request["username"] === "" || $value_from_post_request["password"] === ""){
-            header("Content-Type: application/json");
-            http_response_code(400);
-            echo json_encode(["message" => "Invalid credentials, need username or password"]);
+            sendResponse(400, ["message" => "Invalid credentials, need username or password"]);
             exit();
         }
 
@@ -38,7 +37,7 @@
                 $new_data = json_decode($old_data_in_file, true);
 
                 foreach($new_data as $a_user){
-                    if($a_user["username"] === $user["username"]){
+                    if($a_user["username"] === $user["username"] && $a_user["password"] === $user["password"]){
                         return true;
                     }
                 }
@@ -49,18 +48,14 @@
                 $new_data[] = $new_user_data;
                 $new_data_json = json_encode($new_data, JSON_PRETTY_PRINT);
     
-                $response_data_json = json_encode($new_user_data);
+                $response_data_json = $new_user_data;
     
                 file_put_contents($filename, $new_data_json);
     
-                header("Content-Type: application/json");
-                http_response_code(200);
-                echo $response_data_json;
+                sendResponse(200, $response_data_json);
             }
             else{
-                header("Content-Type: application/json");
-                http_response_code(400);
-                echo json_encode(["message" => "Sorry username already taken"]);
+               sendResponse(400, ["message" => "Sorry username already taken"]);
             }
             
         }
@@ -74,16 +69,15 @@
             $new_data[] = $new_user_data;
             file_put_contents($filename, json_encode($new_data, JSON_PRETTY_PRINT));
 
-            header("Content-Type: application/json");
-            http_response_code(200);
-            echo json_encode($new_user_data);
+           sendResponse(200, [
+            "username" => $value_from_post_request["username"],
+            "points" => 0,
+           ]);
         }
         
     }
     else{ // Detta blir om det inte är en POST request
-        header("Content-Type: application/json");
-        http_response_code(400);
-        echo json_encode(["message" => "Wrong HTTP request, only except POST (in register.php)"]);
+        sendResponse(400, ["message" => "Wrong HTTP request, only except POST (in register.php)"]);
     }
 
 ?>
