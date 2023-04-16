@@ -1,23 +1,28 @@
 [
     {
-        "username": "ee",
-        "password": "ee",
-        "points": 5
-    },
-    {
         "username": "ww",
         "password": "ww",
-        "points": 4
+        "points": 8
     },
     {
-        "username": "e",
-        "password": "e",
+        "username": "ee",
+        "password": "ee",
+        "points": 7
+    },
+    {
+        "username": "qq",
+        "password": "qq",
         "points": 2
     },
     {
-        "username": "a",
-        "password": "a",
+        "username": "dd",
+        "password": "dd",
         "points": 1
+    },
+    {
+        "username": "bb",
+        "password": "bb",
+        "points": 0
     },
     {
         "username": "aa",
