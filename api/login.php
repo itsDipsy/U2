@@ -9,7 +9,7 @@
             $old_data_in_file_as_php_arr = json_decode(file_get_contents($filename), true);
             
             foreach($old_data_in_file_as_php_arr as $user){
-                if($value_from_post_request["username"] === $user["username"]){ // Här måste det också vara username
+                if($value_from_post_request["username"] === $user["username"] && $value_from_post_request["password"] === $user["password"] ){
                     sendResponse(200, [
                         "username" => $value_from_post_request["username"],
                         "points" => $user["points"],
@@ -19,7 +19,7 @@
             }
 
             // Detta blir felet om det inte finns en användare
-            sendResponse(406, ["message" => "There are no users by those credentials"]);
+            sendResponse(404, ["message" => "There are no users by those credentials"]);
             exit();
         }
         else{
