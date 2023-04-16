@@ -9,7 +9,16 @@
             $old_data_in_file_as_php_arr = json_decode(file_get_contents($filename), true);
             
             foreach($old_data_in_file_as_php_arr as $user){
-                if($value_from_post_request["username"] === $user["username"] && $value_from_post_request["password"] === $user["password"] ){
+                if(array_key_exists("password", $value_from_post_request) && array_key_exists("password", $value_from_post_request)){
+                    if($value_from_post_request["username"] === $user["username"] && $value_from_post_request["password"] === $user["password"] ){
+                        sendResponse(200, [
+                            "username" => $value_from_post_request["username"],
+                            "points" => $user["points"],
+                        ]);
+                        exit(); // exit because we found the user
+                    }
+                }
+                elseif( array_key_exists("username", $value_from_post_request) === true && array_key_exists("password", $value_from_post_request) === false){
                     sendResponse(200, [
                         "username" => $value_from_post_request["username"],
                         "points" => $user["points"],
