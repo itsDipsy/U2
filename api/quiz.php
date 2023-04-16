@@ -11,7 +11,7 @@
                 header("Content-Type: application/json");
                 http_response_code(500);
                 echo json_encode([
-                    "message" => "Data is lost (internal server error)"
+                    "message" => "internal server error"
                 ]);
                 exit();
             }
