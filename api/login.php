@@ -19,11 +19,11 @@
             }
 
             // Detta blir felet om det inte finns en användare
-            sendResponse(400, ["message" => "There are no users by those credentials"]);
+            sendResponse(406, ["message" => "There are no users by those credentials"]);
             exit();
         }
         else{
-            sendResponse(400, ["message" => "There are no users"]);
+            sendResponse(500, ["message" => "There are no users"]);
             exit();
         }   
     }

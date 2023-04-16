@@ -7,12 +7,12 @@
         $value_from_post_request = json_decode(file_get_contents("php://input"), true);
         
         if($value_from_post_request["username"] === "" && $value_from_post_request["password"] === ""){
-            sendResponse(400, ["message" => "Invalid credentials, need username or password"]);
+            sendResponse(406, ["message" => "Invalid credentials, need username or password"]);
             exit();
         }
         
         if($value_from_post_request["username"] === "" || $value_from_post_request["password"] === ""){
-            sendResponse(400, ["message" => "Invalid credentials, need username or password"]);
+            sendResponse(406, ["message" => "Invalid credentials, need username or password"]);
             exit();
         }
 
@@ -55,7 +55,7 @@
                 sendResponse(200, $response_data_json);
             }
             else{
-               sendResponse(400, ["message" => "Sorry username already taken"]);
+               sendResponse(406, ["message" => "Sorry username already taken"]);
             }
             
         }
